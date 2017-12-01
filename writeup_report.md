@@ -107,11 +107,11 @@ The following shows the combined filter in action:
 
 ### Histogram Search ###
 
-I implemented two version of histogram search.  The original `histogram_search()` function looks for image peaks in the binary image across the width of the image and then moves up the image.  Second order polynomial using `np.polyfit()` is used to parametrize the lane line.  An example of this search and line fitting can be seen in the image below:
+I implemented two version of histogram search.  The original `histogram_search()` function looks for image peaks in the binary image across the width of the image and then moves up the image.  Second order polynomials are fit using `np.polyfit()` is used to parametrize the lane line.  An example of this search and line fitting can be seen in the image below:
 
 ![alt text][image9]
 
-I also have a `fast_histogram()` search function which only looks locally around already detected lane lines.  We can see this below:
+I also have a `fast_histogram()` search function which only locally searches around already detected lane lines.  We can see this below:
 
 ![alt text][image10]
 
