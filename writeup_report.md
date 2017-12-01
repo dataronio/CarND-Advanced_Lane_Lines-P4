@@ -41,11 +41,11 @@ The goals / steps of this project are the following:
 My project includes the following files and directories:
 
 * **ALL_project.ipynb**  Jupyter notebook containing pipeline and all supporting functions.
-* **/output_images**  directory containing images processed and exported from notebook.
-* **/camera_cal**  directory containing images used in camera calibration
-* **/test_images**  directory containing images for testing purposes.
-* **project_video_output.mp4**  the project video processed by the lane finding pipeline.
-* **writeup_report.md**  this report summarizing the results
+* **/output_images**  Directory containing images processed and exported from notebook.
+* **/camera_cal**  Directory containing images used in camera calibration.
+* **/test_images**  Directory containing images for testing purposes.
+* **project_video_output.mp4**  The project video processed by the lane finding pipeline.
+* **writeup_report.md**  This report summarizing the results.
 
 ## Steps for Advanced Lane Finding Pipeline ##
 
@@ -69,7 +69,7 @@ Distortion Corrected Image:
 
 ### Perspective Transform ###
 
-The code block in notebook under "Perspective Transform" contains the code for forward and inverse transforms for the "bird's eye" or overhead perspective. A straight road image was used to tune the source data points.  The source points  are chosen to represent a rectangle when viewed from above.  From the forward perspective they do not appear as a proper rectangle but we know since the road is straight ahead they are in 3D reality a proper rectangular shape.  The destination points are chosen to be a middle rectangular strip in a 1280x720 image size.
+The code block in notebook under "Perspective Transform" contains the code for forward and inverse transforms for the "bird's eye" or overhead perspective. A straight road image was used to tune the source data points.  The source points  are chosen to represent a rectangle when viewed from above.  From the forward perspective, the points do not appear as a proper rectangle. However, we know since the road is straight that in 3D reality they make a proper rectangular shape.  The destination points are chosen to be a middle rectangular strip in a 1280x720 image size.
 
 This resulted in the following source and destination points:
 
@@ -89,7 +89,7 @@ I verified that my perspective transform was working as expected by inspecting t
 
 ### Color Transforms and Binary Thresholding ###
 
-I used three basic functions to create a binary thresholded image.  `get_saturation()` transforms an image to the HLS color space and finds saturation between the thresholds as long as lightness is greater than 100.  This is to make sure dark saturated shadows are not picked up falsely.  The function `get_yellow()` transforms the image to HLS color space and carefully finds yellow color in the image.  This is used to pick up yellow lines on roads.  The same idea is used in the function `get_white()` which is tuned to pick up white colored lines.
+I used three basic functions to create a binary thresholded image.  The function `get_saturation()` transforms an image to the HLS color space and finds saturation between the thresholds as long as lightness is greater than 100.  This is to make sure that very dark black saturated shadows are not falsely detected.  The function `get_yellow()` transforms the image to HLS color space and carefully finds the color yellow in the image.  This is used to pick up yellow lines on roads.  The same idea is used in the function `get_white()` which is tuned to pick up white colored lines.
 
 We can see the functions in action on the perspective transformed straight road image.  Below we see the results of the `get_yellow()`, `get_white()`, and `get_saturation()` functions (left, right, bottom):
 
@@ -150,5 +150,6 @@ Here's a [link to my video result](./project_video_output.mp4)
 
 From analyzing the output of the challenge videos, I have identified a number of weaknesses with this approach to lane finding.  It is not clear that there would be an easy way to hand-craft thresholding filters that would work perfectly in all conditions.  Clearly, the results of the harder challenge video exposes the weakness in the approach from dramatic shifts in lighting and sharp curves.
 
-A bigger issue in general is that in many situations there simply do not exist lines on the road.  Autonomous vehicles will have to navigate ambiguous areas that humans can with experience muddle through. Human can naturally act in an appropriate manner in such difficult situations.  Possibly a better idea instead of lane finding is an integrated approach to scene understanding and semantic segmentation of the overall road surface.  Deep learning would clearly be the only usable technology for this approach.
+A bigger issue is that in many situations there simply do not exist actual lines on the road.  Autonomous vehicles will have to navigate ambiguous areas that humans can with experience muddle through. Humans can naturally act in an appropriate manner in such difficult situations.  Possibly a better idea, instead of lane finding, is an integrated approach to scene understanding and semantic segmentation of the overall road surface.  Deep learning would clearly be the only usable technology for this approach.
+
 A deep learning driving system would have to learn to react to other cars on the road.  Simply knowing where a well marked lane is not sufficient for safe driving.  Creating a system such as this would take an enormous amount of manpower and effort to cover all of the gray area and corner cases that experienced human drivers can handle with ease.
