@@ -91,7 +91,7 @@ I verified that my perspective transform was working as expected by inspecting t
 
 I used three basic functions to create a binary thresholded image.  get_saturation() transforms an image to the HLS color space and finds saturation between the thresholds as long as lightness is greater than 100.  This is to make sure dark saturated shadows are not picked up falsely.  The function get_yellow() transforms the image to HLS color space and carefully finds yellow color in the image.  This is used to pick up yellow lines on roads.  The same idea is used in the function get_white() which is tuned to pick up white colored lines.
 
-We can see the functions in action on the perspective transformed straight road image.  Below we see the results of the get_saturation(), get_yellow(), and get_white() functions:
+We can see the functions in action on the perspective transformed straight road image.  Below we see the results of the get_yellow(), get_white(), and get_saturation() functions (left, right, bottom):
 
 ![alt text][image5]
 ![alt text][image6]
@@ -101,6 +101,7 @@ We can see the functions in action on the perspective transformed straight road 
 The function combined_filter() does a logical OR on these three functions to find appropriate white or yellow or highly saturated color on the roads.
 
 The following shows the combined filter in action:
+
 ![alt text][image8]
 
 
