@@ -125,10 +125,10 @@ I will now describe the full pipeline for advanced lane finding.  The pipeline i
 
 The pipeline works using global variables for the fit coefficients of the right and left lane.  The stored past windows of right and left lane locations and the average distance between the lanes are also kept as global variables.  An incoming image is first undistorted using `cv2.undistort()`. The perspective is then changed using `cv2.warpPerspective()` to a bird's eye perspective and the `combined_filter()` is run to enhance the lane lines.  The `histogram search()` is run at first followed by `fast_histogram()` in succeeding frames as long as there have been detected line pixels.  An exponential moving average of the distance between lines is calculated as a sanity check for bad frame detection.  If the distance between lines jumps from the average a full histogram search is run again.  Also five previous right and left lane lines are stored and the results are averaged to create the output right and left lane values.  The estimated path is drawn on the original image using the function `draw_path()`.  The computed radius of curvature and offset are computed and drawn on the frame.  The following shows the output of the pipeline on a single input of the test2 image.
 
-First the input image of test2.jpg:
+First the input image of test2.jpg followed by the thresholded bird's eye view:
+
 ![alt text][image11]
 
-Then the thresholded bird's eye image of test2:
 ![alt text][image12]
 
 And finally we have test2 with the drawn lane path in green:
